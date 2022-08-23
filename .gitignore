@@ -1,0 +1,8 @@
+config.py
+contactmanager/db.sqlite3
+venv
+contactmanager/contactmanager/__pycache__
+
+contactmanager/contact/__pycache__
+
+contactmanager/contact/migrations

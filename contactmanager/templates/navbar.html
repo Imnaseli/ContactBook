@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ {% load static %}
+ <head>
+     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'navbar.css' %}">
+     <title>.</title>
+ </head>
+ <body>
+        <div class="navbar">
+            <div>
+                <a href="/">
+                    <h2 class="sunu-title-logo">Contact Book</h2>
+                </a>
+            </div>
+
+            {% if request.user.is_authenticated %}
+            <div>
+                    <h3>
+                        Welcome {{request.user.first_name|title}}
+                    </h3>
+            </div>
+
+            <div class="logout">
+                
+                    <a href="{% url 'signout' %}">
+
+
+                            Logout 
+
+                    </a>
+
+            </div>
+            {% else %}
+            {% endif %}
+        </div>
+    </body>
