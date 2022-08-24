@@ -1,5 +1,8 @@
+from .models import *
 from django import forms
+from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.auth import get_user_model
+
 
 User = get_user_model()
 
@@ -59,14 +62,15 @@ class SigninForm(forms.Form):
         widget=forms.PasswordInput
     )
 
-    def username(self):
-        username = self.cleaned_data.get('username')
-        qs = User.objects.filter(username__iexact = username )
-        if not qs.exists():
-            raise forms.ValidationError('This is an Invalid Email Address ')
-        return username
+    # def username(self):
+    #     username = self.cleaned_data.get('username')
+    #     qs = User.objects.filter(username__iexact = username )
+    #     if not qs.exists():
+    #         raise forms.ValidationError('This is an Invalid Email Address ')
+    #     return username
     
-    
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 class AddContactForm(forms.Form):
     first_name = forms.CharField(
         label='First Name'
@@ -77,9 +81,14 @@ class AddContactForm(forms.Form):
     email = forms.EmailField(
         label='Email Address'
     )
-    mobile = forms.IntegerField(
+    mobile = PhoneNumberField(
+        required = True,
+        widget = PhoneNumberPrefixWidget(initial='NG'),
         label="Phone Number"
     )
-    alternate_number = forms.IntegerField(
+    alternate_number = PhoneNumberField(
+        widget = PhoneNumberPrefixWidget(initial='NG'),
+        required = False,
         label="Another Phone Number"
     )
+    

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate , login , logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
-
+    
 
 
 # Create your views here.
@@ -59,7 +59,7 @@ def signin(request):
     return render(request , 'signin.html', context) 
 
 
-# @login_required(login_url = 'signin')
+@login_required(login_url = 'signin')
 def signout (request):
     logout(request)
     return redirect('home')
@@ -67,23 +67,32 @@ def signout (request):
 
 @login_required(login_url='signin')
 def home (request):
-    return render(request,'home.html')
-
-@login_required(login_url='signin')
+    return render(request,'home.html')     
+        
+# @login_required(login_url='signin')
 def addcontact(request):
     form = AddContactForm()
+    
     if request.method == 'POST':
-        form = AddContactForm(request.POST or None) 
+        form = AddContactForm(request.POST)
         if form.is_valid():
-            contact = Contact()
-            contact = form.save(commit = False)
-            contact.user = request.user
+            cd = form.cleaned_data
+            contact = Contact(
+                user = request.user,
+                first_name = cd['first_name'],
+                last_name = cd['last_name'],
+                email = cd['email'],
+                mobile = cd['mobile'],
+                alternate_number = cd['alternate_number'],
+                )
             contact.save()
-            return redirect('home')
+            return redirect ('home')
     context = {'form':form}
-    return redirect (request , 'addcontact.html' , context)
+    return render (request , 'addcontact.html' , context)
         
         
+        
+               
                
                  
         

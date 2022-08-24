@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     
-    'contact'
+    'contact',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "contactmanager.wsgi.application"
 
+PHONENUMBER_DEFAULT_REGION = 'NG'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
