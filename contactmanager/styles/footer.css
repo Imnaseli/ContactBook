@@ -6,12 +6,15 @@
 }
 html{
     font-family: Arial, Helvetica, sans-serif;
+
     color: #839973;
     background-color:#161724;
-} 
-a{  
-    color: #839973;
-    cursor: pointer;
-    text-decoration: none;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

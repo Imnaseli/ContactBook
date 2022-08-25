@@ -11,12 +11,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'base.css' %}">
 </head>
 <body>
-    
     {% include 'navbar.html' %}
+
     {% block content%}
     
     <!-- The Rest of the File -->
     
     {% endblock content %}
+
+    <div class="footer">{% include 'footer.html' %}</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from .forms import *
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate , login , logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
@@ -67,9 +68,13 @@ def signout (request):
 
 @login_required(login_url='signin')
 def home (request):
-    return render(request,'home.html')     
+    user = request.user
+    contact = user.contact_set.all().order_by('first_name')
+    count = user.contact_set.all().count()
+    context = {'contacts':contact  ,  'count':count}   
+    return render(request,'home.html', context)     
         
-# @login_required(login_url='signin')
+@login_required(login_url='signin')
 def addcontact(request):
     form = AddContactForm()
     
@@ -90,11 +95,25 @@ def addcontact(request):
     context = {'form':form}
     return render (request , 'addcontact.html' , context)
         
+  
+@login_required(login_url = 'login')
+def goback (request):
+    if request.method == 'POST':
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))     
         
-        
-               
-               
+@login_required(login_url = 'login')              
+def contactpage(request , contact_id):
+    contact = Contact.objects.get(id = contact_id)
+    context = {'contact':contact}
+    return render(request , 'contactpage.html' , context)           
                  
-        
+
+
+def deletecontact (request , contact_id):
+    contact = Contact.objects.get(id = contact_id)
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('home')
+    return render (request , 'delete.html' , {'obj':contact})      
         
         

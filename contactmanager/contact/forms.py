@@ -84,11 +84,13 @@ class AddContactForm(forms.Form):
     mobile = PhoneNumberField(
         required = True,
         widget = PhoneNumberPrefixWidget(initial='NG'),
-        label="Phone Number"
+        label="Phone Number",
+        
     )
     alternate_number = PhoneNumberField(
         widget = PhoneNumberPrefixWidget(initial='NG'),
         required = False,
-        label="Another Phone Number"
+        label="Another Phone Number",
+        
     )
     

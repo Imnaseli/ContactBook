@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+    {%extends 'base.html'%}{% block content%} 
+    {% load static %}
+    <head>
+        <title>Delete page.</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'delete.css' %}">
+    </head>
+    <body>
+        <div class="topcontainer">
+
+           <div></div>
+
+           <div class="main-box">
+                <form method="POST" action="">
+
+                    {% csrf_token %}
+                    <p>Are you sure you want to delete "{{obj.first_name|title}} {{obj.last_name|title}}"</p>
+                    <div class="responses">
+                        <input type="submit" value="Confirm"/>
+                    </div>  
+                </form>
+                <div class="goback" >
+                    <a href="{{request.META.HTTP_REFERER}}"><button> Go Back</button></a>
+                </div>
+
+            </div>
+            
+            <div></div>
+        </div> 
+    </body>
+    {% endblock content %}

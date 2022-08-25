@@ -1,0 +1,11 @@
+body{
+    min-height: 100vh;
+    width: 100%;
+    border: 5px dashed green;
+}
+.contact{
+    display: flex;
+    width: 40%;
+    outline: 5px dashed red;
+    flex-direction: column;
+}

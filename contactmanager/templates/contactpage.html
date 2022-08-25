@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{%extends 'base.html'%}{% block content%}
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'contactpage.css' %}">
+    <title>{{contact.first_name|title}</title>
+</head>
+<body>
+<div class="update/delete">
+    <a  href="{% url 'deletecontact' contact.id  %}">Delete this Contact</a>
+</div>
+
+<div class="contact">
+    <p>{{contact.first_name|title}} {{contact.last_name|title}}</p>
+    <p>{{contact.email}}</p>
+    <p>{{contact.mobile}}</p>
+
+</div>
+
+<a href="{{request.META.HTTP_REFERER}}">Go back</a>
+
+{% endblock content %}
+</body>
+</html>

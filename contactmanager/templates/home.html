@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-
+{%extends 'base.html'%}{% block content%}
+{% load static %}
 
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'home.css' %}">
     <title>Contact App</title>
 </head>
-{%extends 'base.html'%}{% block content%}
+
 <body>
 
     <h1>Contact App</h1>
     <p>By Ilesanmi Oluwasijibomi</p>
     <p>Welcome {{request.user.first_name|title}}</p>
-    <a href="{% url 'addcontact' %}"><button>Add Contact</button></a>
+    <p>{{request.user.first_name|title}}, you have {% if count > 1 %}{{count}}  contacts.{% elif count == 0 %} no contacts.{% else %}{{count}}  contact.{% endif %}</p>
+
+
+    <div class="contactcolumn">
+
+        {% for contact in contacts %}
+            <div class="contact" ><a href="{% url 'contactpage' contact.id  %}">
+                <div class="inner-contact">
+                    <div class="circle">{{ contact.first_name.0|title }}</div>
+                    {{contact.id}}
+                    {{contact.first_name|title}}
+                    {{contact.last_name|title}}
+                </div>
+            </a>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 
 {% endblock content %}
