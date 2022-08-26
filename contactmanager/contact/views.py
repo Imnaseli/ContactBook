@@ -1,12 +1,13 @@
 from .forms import *
 from django.http import HttpResponse
+from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate , login , logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
     
-
 
 # Create your views here.
 def signup (request):
@@ -23,15 +24,16 @@ def signup (request):
         password = form.cleaned_data.get('password1')
         password2 = form.cleaned_data.get('password2')
         
-        
         if password == password2:
+            User = get_user_model()
             try:
                 user = User.objects.create_user(username ,  email , password )
                 user.first_name = first_name
                 user.last_name = last_name
                 user.save()
-            except:
+            except Exception as e:
                 user = None
+                
         
             if user != None:
                 login(request , user)
