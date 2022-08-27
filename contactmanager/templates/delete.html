@@ -15,7 +15,7 @@
                 <form method="POST" action="">
 
                     {% csrf_token %}
-                    <p>Are you sure you want to delete "{{obj.first_name|title}} {{obj.last_name|title}}"</p>
+                    <p>Are you sure you want to delete "{{obj.first_name|title}} {{obj.last_nameI|title}}"</p>
                     <div class="responses">
                         <input type="submit" value="Confirm"/>
                     </div>  
