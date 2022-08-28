@@ -14,24 +14,32 @@
 </head>
 
 <body>
-
-    <h1>Home</h1>
-    <p>Welcome, {{request.user.first_name|title}}, you have {% if count > 1 %}{{count}}  contacts.{% elif count == 0 %} no contacts.{% else %}{{count}}  contact.{% endif %}</p>
+    <div class="column-left"></div>
 
 
-    <div class="contactcolumn">
+    <div class="column-center">
+        <div>
+            <h1>Home</h1>
+            <p>Welcome, {{request.user.first_name|title}}, you have {% if count > 1 %}{{count}}  contacts.{% elif count == 0 %} no contacts.{% else %}{{count}}  contact.{% endif %}</p>
+        </div>
 
-        {% for contact in contacts %}
-            <div class="contact" ><a href="{% url 'contactpage' contact.id  %}">
-                <div class="inner-contact">
-                    <div class="circle">{{ contact.first_name.0|title }}</div>
-                    {{contact.first_name|title}}
-                    {{contact.last_name|title}}
+        <div class="contacts">
+
+            {% for contact in contacts %}
+                <div class="contact" ><a href="{% url 'contactpage' contact.id  %}">
+                    <div class="inner-contact">
+                        <div class="circle">{{ contact.first_name.0|title }}</div>
+                        {{contact.first_name|title}}
+                        {{contact.last_name|title}}
+                    </div>
+                </a>
                 </div>
-            </a>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
+
+
+    <div class="column-right"></div>
 </body>
 
 {% endblock content %}
