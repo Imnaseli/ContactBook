@@ -27,7 +27,6 @@
             <div class="contact" ><a href="{% url 'contactpage' contact.id  %}">
                 <div class="inner-contact">
                     <div class="circle">{{ contact.first_name.0|title }}</div>
-                    {{contact.id}}
                     {{contact.first_name|title}}
                     {{contact.last_name|title}}
                 </div>
