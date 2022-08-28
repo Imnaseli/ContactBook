@@ -15,10 +15,8 @@
 
 <body>
 
-    <h1>Contact App</h1>
-    <p>By Ilesanmi Oluwasijibomi</p>
-    <p>Welcome {{request.user.first_name|title}}</p>
-    <p>{{request.user.first_name|title}}, you have {% if count > 1 %}{{count}}  contacts.{% elif count == 0 %} no contacts.{% else %}{{count}}  contact.{% endif %}</p>
+    <h1>Home</h1>
+    <p>Welcome, {{request.user.first_name|title}}, you have {% if count > 1 %}{{count}}  contacts.{% elif count == 0 %} no contacts.{% else %}{{count}}  contact.{% endif %}</p>
 
 
     <div class="contactcolumn">
